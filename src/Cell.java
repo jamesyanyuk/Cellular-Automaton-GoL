@@ -26,9 +26,11 @@ public class Cell {
     }
 
     private void checkNeighbors(Cell[][] grid, Stack<Cell> toNeutralize, Stack<Cell> toRevitalize) {
-        if(neighbors(grid) != 2 && neighbors(grid) != 3 && alive == true) {
+        if(alive == true && neighbors(grid) != 2 && neighbors(grid) != 3) {
             toNeutralize.push(this);
-            System.out.println(x + ", " + y + " not enough neighbors " + neighbors(grid));
+            //System.out.println(x + ", " + y + " not enough neighbors " + neighbors(grid));
+        } else if(alive == false && neighbors(grid) == 3) {
+            toRevitalize.push(this);
         }
     }
 

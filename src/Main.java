@@ -34,6 +34,8 @@ public class Main extends BasicGame {
         // Update board by iterating through stacks
         // (neutralize and revitalize stacks)
 
+        System.out.println("Pulsing grid...");
+
         while(!toNeutralize.isEmpty()) {
             toNeutralize.pop().neutralize();
         }
@@ -73,16 +75,18 @@ public class Main extends BasicGame {
                     g.setColor(Color.black);
                     g.fillRect(c.x * gridElemSize, c.y * gridElemSize, gridElemSize, gridElemSize);
                 }
+            }
+        }
+    }
+
+    public void update(GameContainer gc, int delta) throws SlickException {
+        for(Cell[] r : grid) {
+            for (Cell c : r) {
                 c.pulseCell(grid, toNeutralize, toRevitalize);
             }
         }
 
-        System.out.println(toNeutralize.size());
         pulseGrid();
-    }
-
-    public void update(GameContainer gc, int delta) throws SlickException {
-        //
     }
 
     public static void main(String[] args) {
